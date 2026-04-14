@@ -62,10 +62,20 @@ export default function Home() {
         <div className="md:hidden text-gold">MENU</div>
       </nav>
 
-      <section id="hero" className="h-screen flex flex-col items-center justify-center text-center p-6">
-        <h1 className="text-6xl md:text-8xl font-bold mb-6 text-white tracking-tighter">BLACK PANTHER<br/><span className="text-gold">KAMPALA</span></h1>
-        <p className="text-xl md:text-2xl mb-10 text-zinc-400">Redefining Kampala's Night Life & Dining Experience</p>
-        <a href="#reservations" className="cta-button px-8 py-4 bg-transparent border-2 border-gold text-gold font-bold uppercase tracking-widest hover:bg-gold hover:text-black transition shadow-[0_0_15px_rgba(255,215,0,0.5)]">VIP RSVP</a>
+      <section id="hero" className="min-h-[80vh] relative overflow-hidden flex flex-col justify-center items-center text-center p-6">
+        <Image 
+          src="/hero.png" 
+          alt="Hero" 
+          fill 
+          priority 
+          className="object-cover object-top"
+        />
+        <div className="absolute inset-0 bg-black/80 z-0"></div>
+        <div className="relative z-10">
+          <h1 className="text-6xl md:text-8xl font-bold mb-6 text-white tracking-tighter">BLACK PANTHER<br/><span className="text-gold">KAMPALA</span></h1>
+          <p className="text-xl md:text-2xl mb-10 text-zinc-400">Redefining Kampala's Night Life & Dining Experience</p>
+          <a href="#reservations" className="cta-button px-8 py-4 bg-transparent border-2 border-gold text-gold font-bold uppercase tracking-widest hover:bg-gold hover:text-black transition shadow-[0_0_15px_rgba(255,215,0,0.5)]">VIP RSVP</a>
+        </div>
       </section>
 
       <section id="about" className="py-24 px-6 bg-zinc-950">
@@ -110,14 +120,19 @@ export default function Home() {
 
       <section id="gallery" className="py-24 px-6">
         <h2 className="text-4xl font-bold mb-12 text-gold text-center">Atmosphere Gallery</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} className={`relative overflow-hidden group ${i === 1 || i === 3 ? 'row-span-2' : ''}`}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
+          {[ 
+            { src: '/hero.png', alt: 'Hero Section' },
+            { src: '/interior.png', alt: 'Interior Design' },
+            { src: '/logo.jpg', alt: 'Black Panther Logo' },
+            { src: '/space.png', alt: 'Space View' },
+          ].map((image, index) => (
+            <div key={index} className="relative overflow-hidden aspect-video rounded-xl border border-white/10 bg-white/5 backdrop-blur-md group">
               <Image 
-                src={`/gallery-${i}.jpg`} 
-                alt={`Atmosphere ${i}`} 
+                src={image.src} 
+                alt={image.alt} 
                 fill 
-                className="object-cover transition-transform duration-500 group-hover:scale-110" 
+                className="object-cover transition-transform duration-700 group-hover:scale-105" 
               />
             </div>
           ))}
