@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -59,7 +60,9 @@ export default function Home() {
           <a href="#gallery" className="hover:text-gold transition">Gallery</a>
           <a href="#reservations" className="hover:text-gold transition">RSVP</a>
         </div>
-        <div className="md:hidden text-gold">MENU</div>
+        <div className="md:hidden text-gold">
+          <Link href="#menu">MENU</Link>
+        </div>
       </nav>
 
       <section id="hero" className="min-h-[80vh] relative overflow-hidden flex flex-col justify-center items-center text-center p-6">
