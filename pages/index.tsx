@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useRef } from 'react';
+import VipRsvpModal from '../components/VipRsvpModal';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
@@ -9,6 +10,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('Starters');
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const container = useRef(null);
 
   useGSAP(() => {
@@ -77,7 +79,7 @@ export default function Home() {
         <div className="relative z-10">
           <h1 className="text-6xl md:text-8xl font-bold mb-6 text-white tracking-tighter">BLACK PANTHER<br/><span className="text-gold">KAMPALA</span></h1>
           <p className="text-xl md:text-2xl mb-10 text-zinc-400">Redefining Kampala's Night Life & Dining Experience</p>
-          <a href="#reservations" className="cta-button px-8 py-4 bg-transparent border-2 border-gold text-gold font-bold uppercase tracking-widest hover:bg-gold hover:text-black transition shadow-[0_0_15px_rgba(255,215,0,0.5)]">VIP RSVP</a>
+          <button onClick={() => setIsModalOpen(true)} className="cta-button px-8 py-4 bg-transparent border-2 border-gold text-gold font-bold uppercase tracking-widest hover:bg-gold hover:text-black transition shadow-[0_0_15px_rgba(255,215,0,0.5)]">VIP RSVP</button>
         </div>
       </section>
 
@@ -201,6 +203,8 @@ export default function Home() {
         <p className="text-gold font-bold mb-4">Bukoto-Kisaasi, Kisota Rd, Kampala</p>
         <p className="text-zinc-500 text-sm">Partners: Fenon Premium Events Production | Bazi Glam Events</p>
       </footer>
+
+      <VipRsvpModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }
